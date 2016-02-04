@@ -5,21 +5,9 @@ namespace Ve;
 use Ve\InvalidSpeedException;
 use Manager\TestManager;
 
-class User {
-	private $name;
-	private $password;
-	private $email;
-
-	public function insertUser() {
-		$bdd = new Bdd();
-		$bdd->insert($this->name, $this->password, $this->email);
-	}
-}
-
 /*
 *	Remember exemple of RATP bus horaires
 */
-
 interface MethodsVehicule {
 	public function accelerate();	
 }
