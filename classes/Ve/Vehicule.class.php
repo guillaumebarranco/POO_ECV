@@ -12,7 +12,7 @@ interface MethodsVehicule {
 	public function accelerate();	
 }
 
-require_once(getcwd().'/classes/Trait/functions.php');
+require_once('functions.php');
 
 abstract class Vehicule implements MethodsVehicule {
 	private $engine = 'V8';
