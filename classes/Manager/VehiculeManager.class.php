@@ -17,12 +17,15 @@ class VehiculeManager {
 
 		\Manager\TestManager::checkProperties($this, $array_check);
 
+		$this->connectToDatabase();
+	}
+
+	public function connectToDatabase() {
 		try {
 		    $this->connexion = new \PDO('mysql:host='.$this->host.';dbname='.$this->dbname, $this->user, $this->password);
 		} catch (Exception $e) {
 		    die('Erreur : ' . $e->getMessage());
 		}
-
 	}
 
 	public function getVehicules() {
@@ -53,10 +56,49 @@ class VehiculeManager {
 			$insert->bindParam(':color', $color, \PDO::PARAM_STR);
 			$insert->execute();
 
-			echo 'Inserted good !';
+			echo 'The vehicule was inserted !';
 
 		} catch (Exception $e) {
-			die("Some error occured while the register process : ".$e);
+			die("Some error occured while the insertion process : ".$e);
+		}
+	}
+
+	public function updateVehicule($id, $engine, $speed, $brand, $color) {
+
+		try {
+
+			$insert = $this->connexion->prepare
+			(
+				"UPDATE `cars` 
+				SET `engine` = :engine, `speed` = :speed, `brand` = :brand, `color` = :color
+				WHERE `id` = :id;"
+			);
+
+			$insert->bindParam(':engine', $engine, \PDO::PARAM_STR);
+			$insert->bindParam(':speed', $speed, \PDO::PARAM_STR);
+			$insert->bindParam(':brand', $brand, \PDO::PARAM_STR);
+			$insert->bindParam(':color', $color, \PDO::PARAM_STR);
+			$insert->bindParam(':id', $id, \PDO::PARAM_STR);
+			$insert->execute();
+
+			echo 'The vehicule was updated with success !';
+
+		} catch (Exception $e) {
+			die("Some error occured while the update process : ".$e);
+		}
+	}
+
+	public function deleteVehicule($id) {
+
+		try {
+			$delete = $this->connexion->prepare("DELETE FROM `cars` WHERE id = :id ");
+			$delete->bindParam(':id', $id, \PDO::PARAM_INT);
+			$delete->execute();
+
+			echo 'Your vehicule have been deleted !';
+			
+		} catch (Exception $e) {
+			die("Some error occured while the delete process : ".$e);
 		}
 	}
 
