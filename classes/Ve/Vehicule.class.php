@@ -12,6 +12,8 @@ interface MethodsVehicule {
 	public function accelerate();	
 }
 
+require_once(getcwd().'/classes/Trait/functions.php');
+
 abstract class Vehicule implements MethodsVehicule {
 	private $engine = 'V8';
 	private $speed = 0;
@@ -21,11 +23,14 @@ abstract class Vehicule implements MethodsVehicule {
 	private $weight = 1000;
 	private $type;
 
+	use phpFunctions;
+
 	/*
 	*	CONSTRUCT FUNCTIONS
 	*/
 
 	public function __construct($brand, $color) {
+
 		$this->setBrand($brand);
 		$this->setColor($color);
 	}
@@ -41,6 +46,9 @@ abstract class Vehicule implements MethodsVehicule {
 	*/
 
 	public function accelerate() {
+
+		$this->trySomething();
+
 		if($this->speed < 130) {
 			$this->speed = $this->speed + 10;
 		} else {

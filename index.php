@@ -23,7 +23,7 @@
 		<?php
 
 			require_once('Autoloader.class.php');
-
+			
 			use Manager\VehiculeManager;
 			use Ve\Moto;
 			use Ve\Camion;
