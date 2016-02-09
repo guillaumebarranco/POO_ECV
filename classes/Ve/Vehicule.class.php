@@ -12,7 +12,7 @@ interface MethodsVehicule {
 	public function accelerate();	
 }
 
-require_once('functions.php');
+require_once('phpFunctions.trait.php');
 
 abstract class Vehicule implements MethodsVehicule {
 	private $engine = 'V8';
@@ -46,8 +46,6 @@ abstract class Vehicule implements MethodsVehicule {
 	*/
 
 	public function accelerate() {
-
-		$this->trySomething();
 
 		if($this->speed < 130) {
 			$this->speed = $this->speed + 10;

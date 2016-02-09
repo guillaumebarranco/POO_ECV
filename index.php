@@ -66,6 +66,8 @@
 			$ferrari->accelerate();
 			$ferrari->accelerate();
 
+			echo "<h2>The price of your ".$ferrari->getBrand()." is ".$ferrari->formatePrice(5000000).'</h2>';
+
 			var_dump($ferrari);
 			$ferrari->klaxonne();
 
